@@ -1,6 +1,6 @@
 /* JS/CORE.JS
 - core script, containing all main functions for other js.
-last update: 24-07-2014
+last update: 30-07-2014
 */
 
 // DEF VARS
@@ -45,7 +45,7 @@ var pageget_array = new Array(); // contains url data (key=var)
 				pageget_array[pagekey] = pageval;											
 			}
 			// load page elements (if page is loaded)		
-			if(pageloaded){loadpageelem(pageget_array);}		
+			//if(pageloaded){loadpageelem(pageget_array);}		
 		}else{
 			if(page_hash){page = page_hash;}
 		}	
@@ -55,7 +55,7 @@ var pageget_array = new Array(); // contains url data (key=var)
 	
 	// PAGE LOAD DONE (if page is loaded)
 	function pageloaddone(){
-		loadpageelem(pageget_array);	
+		//loadpageelem(pageget_array);	
 	}
 	
 	// CHECK URL
@@ -151,8 +151,8 @@ var workingarray = new Array();
 		loadstyle = loadstyle || false;
 		callback = callback || false;
 		
-		if(loadstyle){$(div).html('<div class="'+loadstyle+'"><img src="/img/loading.gif"></div>');	
-		}else{$(div).html('<div class="loading"><img src="/img/loading.gif"></div>');}
+		if(loadstyle){$(div).html('<div class="'+loadstyle+'"><img src="/assets/img/loading.gif"></div>');	
+		}else{$(div).html('<div class="loading"><img src="/assets/img/loading.gif"></div>');}
 	
 		if(typeof(data)==='undefined'){data = "";}else{data = "?"+data;}	
 		$.ajax({
