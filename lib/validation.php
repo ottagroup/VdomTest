@@ -5,15 +5,6 @@ class lib_validation{
 	public function __construct(){
 		
     }
-	
-	// UUID
-	public function uuid($uuid){	
-		if(preg_match("/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i", $uuid)){
-			return TRUE;
-		}
-		return FALSE;
-	}
-	
 	// NUMBER
 	public function number($num){
 		if(is_numeric($num)){
