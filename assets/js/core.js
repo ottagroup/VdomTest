@@ -1,6 +1,6 @@
 /* JS/CORE.JS
 - core script, containing all main functions for other js.
-last update: 30-07-2014
+last update: 01-08-2014
 */
 
 // DEF VARS
@@ -45,7 +45,7 @@ var pageget_array = new Array(); // contains url data (key=var)
 				pageget_array[pagekey] = pageval;											
 			}
 			// load page elements (if page is loaded)		
-			//if(pageloaded){loadpageelem(pageget_array);}		
+			if(pageloaded){loadpageelem(pageget_array);}		
 		}else{
 			if(page_hash){page = page_hash;}
 		}	
@@ -55,7 +55,7 @@ var pageget_array = new Array(); // contains url data (key=var)
 	
 	// PAGE LOAD DONE (if page is loaded)
 	function pageloaddone(){
-		//loadpageelem(pageget_array);	
+		loadpageelem(pageget_array);	
 	}
 	
 	// CHECK URL
