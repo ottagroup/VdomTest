@@ -1,4 +1,4 @@
-PLACE HOLDER 
+--- PLACE HOLDER ---
 
 TAGS
 
@@ -22,7 +22,10 @@ completing that task lowers the current value of the desire.
 
 TASKS
 
-stuff + tags + desire increment amount
+requirements (if x, if not x)
+rulles (add rulles to rulles list?)
+tags
+desire increment amount (can be multiple tags)
 
 ----------------------------------------------------------
 
