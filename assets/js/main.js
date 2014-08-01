@@ -54,7 +54,7 @@ function loadpageelem(getarray){
 
 // HIDE PAGE ELEMENT (used by loadpageelem)
 // if part of a group we use this to search and hide the other elements
-function hidepageelem(elemhide, elemignore){ // webfileedit_, webfileedit_img
+function hidepageelem(elemhide, elemignore){ 
 	$('[id^='+elemhide+']').each(function(){	
 		// we loop true all, divs, buttons etc	
 		var tmp_id = $(this).attr('id');
