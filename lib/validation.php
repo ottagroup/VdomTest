@@ -2,9 +2,6 @@
 
 class lib_validation{
 	
-	public function __construct(){
-		
-    }
 	// NUMBER
 	public function number($num){
 		if(is_numeric($num)){
