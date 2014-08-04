@@ -37,7 +37,12 @@ function loadpageelem(getarray){
 		}else if(getarray['main'] == 'blabla'){					
 			load2div('subload/test2','main_blabla'); // only loads stuff to div... no effects (slide show etc)
 			hidepageelem('main_','main_blabla'); //hide,ignore
-			$('#main_blabla').slideDown("slow");			
+			$('#main_blabla').slideDown("slow");	
+			
+		}else if(getarray['main'] == 'datatest'){					
+			load2div('data','main_datatest'); // only loads stuff to div... no effects (slide show etc)
+			hidepageelem('main_','main_datatest'); //hide,ignore
+			$('#main_datatest').slideDown("slow");			
 		}
 	}else{
 		
