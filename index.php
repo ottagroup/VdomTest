@@ -55,10 +55,12 @@ main.js is a mess atm.. but you only need to look at loadpageelem
 -->
 <a id="main_points_btn" onclick="data2url('main=points'); togglepageelem('main_points'); return false;" href="noscript.php">Sub loader</a>
  - 
-<a id="main_blabla_btn" onclick="data2url('main=blabla'); togglepageelem('main_blabla'); return false;" href="noscript.php">Sub loader 2</a>
+<a id="main_blabla_btn" onclick="data2url('main=blabla'); togglepageelem('main_blabla'); return false;" href="noscript.php">Sub loader 2</a> 
+ -
+<a id="main_datatest_btn" onclick="data2url('main=datatest'); togglepageelem('main_datatest'); return false;" href="noscript.php">DATA TEST</a>
 <div id="main_points"></div> 
 <div id="main_blabla"></div>
-
+<div id="main_datatest"></div>
 
 <!--
 Main dialog
