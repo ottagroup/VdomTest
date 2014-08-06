@@ -19,7 +19,7 @@ var pageget_array = new Array(); // contains url data (key=var)
 		// set bold
 		$('a[href="'+page+'"]').addClass('active');
 		// set menu clicks
-		$('#menu a').on('click', function(event){
+		$('#page_menu a').on('click', function(event){
 			loadpage(this.hash);
 		});		
 		// load page
@@ -71,17 +71,17 @@ var pageget_array = new Array(); // contains url data (key=var)
 	function loadpage(page){	
 		if(page != lastpage){ //change page	
 			if(lastpage != ""){			
-				$('#menu a[href="'+lastpage+'"]').removeClass('active');
+				$('#page_menu a[href="'+lastpage+'"]').removeClass('active');
 				$(lastpage+"_page").slideUp("slow");	
 			}
-			$('#menu a[href="'+page+'"]').addClass('active');				
+			$('#page_menu a[href="'+page+'"]').addClass('active');				
 			lastpage = page;
 			var pagename = page.substr(1);
 			if(loadedpages.indexOf(pagename) == -1){ 
 				pageloaded = false;	
 				$(page+"_page").slideDown("slow");		
 				loadedpages.push(pagename);			
-				get2div([pagename,'',page+"_page",'','',false,true,'pageloading',pageloaddone]);			
+				get2div([pagename,'page='+page,page+"_page",'','',false,true,'pageloading',pageloaddone]);			
 			}else{$(page+"_page").slideDown("slow");}		
 		}
 	}
@@ -95,13 +95,21 @@ var pageget_array = new Array(); // contains url data (key=var)
 				pagedata_array = page_array[i].split('=');
 				var pagekey = pagedata_array[0];
 				var pageval = pagedata_array[1];				
-				pageget_array[pagekey] = pageval; // overwrite or add data
+				if(pageget_array[pagekey] == pageval){ // if the same
+					delete pageget_array[pagekey];
+				}else{							
+					pageget_array[pagekey] = pageval; // overwrite or add data
+				}
 			}		
 		}else{
 			pagedata_array = data_array.split('=');
 			var pagekey = pagedata_array[0];
 			var pageval = pagedata_array[1];				
-			pageget_array[pagekey] = pageval; // overwrite or add data
+			if(pageget_array[pagekey] == pageval){ // if the same
+				delete pageget_array[pagekey];
+			}else{							
+				pageget_array[pagekey] = pageval; // overwrite or add data
+			}
 		}		
 		// add hash data to string
 		var hash_data = "";
@@ -151,9 +159,9 @@ var workingarray = new Array();
 		loadstyle = loadstyle || false;
 		callback = callback || false;
 		
-		if(loadstyle){$(div).html('<div class="'+loadstyle+'"><img src="/assets/img/loading.gif"></div>');	
-		}else{$(div).html('<div class="loading"><img src="/assets/img/loading.gif"></div>');}
-	
+		if(loadstyle){$(div).html('<div class="'+loadstyle+'"><img src="assets/img/loading.gif"></div>');	
+		}else{$(div).html('<div class="loading"><img src="assets/img/loading.gif"></div>');}
+		
 		if(typeof(data)==='undefined'){data = "";}else{data = "?"+data;}	
 		$.ajax({
 			type: "GET",
@@ -172,7 +180,7 @@ var workingarray = new Array();
 					errorarraydata.push(arraydata);
 				}
 				if(errormsg){$(div).html('<div '+errorclass+'><a href="#" onclick="get2div([\''+errorindex+'\']);return false;">'+errormsg+'</a></div>');}
-				else{$(div).html('<div class="errorcell"><a href="/" onclick="get2div([\''+errorindex+'\']);return false;"><h1>Error loading page content</h1><p>Please refresh the page or try again<p></a></div>');}
+				else{$(div).html('<div class="errorcell"><a href="/" onclick="get2div([\''+errorindex+'\']);return false;"><h1>Error loading page content</h1><p>Please refresh the page or click here to try again<p></a></div>');}
 			},
 			complete: function(x, t){
 				if(callback){callback(callbackdata);}
@@ -221,11 +229,54 @@ var toggleddivs = new Array();
 var loadeddivs = new Array();
 
 // LOAD2DIV (simply loads stuff to a div and prevents unnecessary reloading)
-function load2div(target,div,get){
-	if(loadeddivs.indexOf(div) == -1){	
-		loadeddivs.push(div);	
+function load2div(target,div,get,cache){
+	if(typeof(cache)==='undefined'){cache = true;}else{cache = false;}
+	if(cache){
+		if(loadeddivs.indexOf(div) == -1){	
+			loadeddivs.push(div);	
+			if(typeof(get)==='undefined'){get = '';}	
+			get2div([target,get,'#'+div,'','',false,true]);		
+		}
+	}else{
 		if(typeof(get)==='undefined'){get = '';}	
-		get2div([target,get,'#'+div,'','',false,true]);		
+		get2div([target,get,'#'+div,'','',false,true]);	
 	}
 	return false;	
 }
+
+// TOGGLE PAGE ELEMENT
+function togglepageelem(elem,boldbtn){	
+	if(typeof(boldbtn)==='undefined'){boldbtn = false;}else{boldbtn = true;}
+	if($('#'+elem).is(':visible')){ //hide
+		$('#'+elem).slideUp("slow");		
+		if(boldbtn){$('#'+elem+'_btn').removeClass('bold');}	
+	}else{ // show
+		$('#'+elem).slideDown("slow");	
+		if(boldbtn){$('#'+elem+'_btn').addClass('bold');}
+	}
+}
+
+// HIDE PAGE ELEMENT (used by loadpageelem)
+// if part of a group we use this to search and hide the other elements
+function hidepageelems(elemhide, elemignore){ 
+	$('[id^='+elemhide+']').each(function(){	
+		// we loop true all, divs, buttons etc	
+		var tmp_id = $(this).attr('id');			
+		// if ignore button
+		if(tmp_id == elemignore+'_btn'){
+			$('#'+tmp_id).addClass('bold'); //bold					
+		// if other button
+		}else if((tmp_id.substr(-3)) == 'btn'){
+			$('#'+tmp_id).removeClass('bold'); //remove bold			
+		// if ignore div
+		}else if(tmp_id == elemignore){
+			$('#'+tmp_id).slideDown("slow");		
+		// if other div	
+		}else{
+			$('#'+tmp_id).slideUp("slow");			
+		}
+	}); 	
+}
+
+// TOOLTIP (set tooltip on items with tooltip class)
+$(document).tooltip({items: ".tooltip"});
