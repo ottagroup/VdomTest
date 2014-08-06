@@ -1,87 +1,41 @@
-var visiblepageelem = new Array();
+/*
+FUNCTIONS THAT CAN BE USED HERE.
 
-// PAGE ELEMENT VISIBILITY (check if visible and set/unset visibility)
-function pageelemvisible(elem){
-	var visiblepageelemindex = visiblepageelem.indexOf(elem);
-	if(visiblepageelemindex == -1){ //invisible
-		visiblepageelem.push(elem); // add to array
-		return true;
-	}else{ //visible
-		visiblepageelem.splice(visiblepageelemindex,1); // remove from array
-		return false;
-	}	
-}
-		
-// TOGGLE PAGE ELEMENT
-function togglepageelem(elem){	
-	if(pageelemvisible(elem)){
-		$('#'+elem).slideUp("slow");
-	}else{
-		$('#'+elem).slideDown("slow");		
-	}
-}
+- load2div('target', div);
+loads stuff into a div (with loading animation, error handeling etc)
+target = the location of the php file inside the ajax folder (without .php extension) ex: folder/test
 
-// LOAD PAGE ELEMENT (triggered by url change from getpage)
-// shows and hides elements (only triggers on change...)
+- hidepageelements('search','ignore');
+hides all divs that match the search except for the ignore
+includes button styling (buttons on the page need to end with _btn)
+search = part of the div to seach for
+ignore = the full name of the div to ignore
+*/
+
+// LOAD PAGE ELEMENT (triggered sub-hash url change, not triggered is no sub-hash present)
 function loadpageelem(getarray){	
 	
-
-	// webfileedit
-	if(getarray['main']){		
-	
-		if(getarray['main'] == 'points'){					
-			load2div('subload/test','main_points'); // only loads stuff to div... no effects (slide show etc)
-			hidepageelem('main_','main_points'); //hide,ignore
-			$('#main_points').slideDown("slow");	
+	if(getarray['main']){	
+		if(getarray['main'] == '1'){					
+			load2div('subload/1','main_1'); 
+			hidepageelems('main_','main_1'); 
 					
-		}else if(getarray['main'] == 'blabla'){					
-			load2div('subload/test2','main_blabla'); // only loads stuff to div... no effects (slide show etc)
-			hidepageelem('main_','main_blabla'); //hide,ignore
-			$('#main_blabla').slideDown("slow");	
+		}else if(getarray['main'] == '2'){					
+			load2div('subload/2','main_2');
+			hidepageelems('main_','main_2'); 
+		
+		}else if(getarray['main'] == '3'){					
+			load2div('subload/3','main_3');
+			hidepageelems('main_','main_3'); 
 			
-		}else if(getarray['main'] == 'datatest'){					
-			load2div('data','main_datatest'); // only loads stuff to div... no effects (slide show etc)
-			hidepageelem('main_','main_datatest'); //hide,ignore
-			$('#main_datatest').slideDown("slow");			
+			
+		}else if(getarray['main'] == '4'){	// error demo.. loading a page that doesnt exist				
+			load2div('idontexist','main_4'); 
+			hidepageelems('main_','main_4');
+		
 		}
 	}else{
 		
 	}
-	
-	
-	for(var key in getarray) {
-		console.log('key'+key);
-	}
-	
-
 	return false;	
-}
-
-// HIDE PAGE ELEMENT (used by loadpageelem)
-// if part of a group we use this to search and hide the other elements
-function hidepageelem(elemhide, elemignore){ 
-	$('[id^='+elemhide+']').each(function(){	
-		// we loop true all, divs, buttons etc	
-		var tmp_id = $(this).attr('id');
-			
-		// if ignore button
-		if(tmp_id == elemignore+'_btn'){
-			$('#'+tmp_id).addClass('bold'); //bold	
-				
-		// if other button
-		}else if((tmp_id.substr(-3)) == 'btn'){
-			$('#'+tmp_id).removeClass('bold'); //remove bold	
-		
-		// if ignore div
-		}else if(tmp_id == elemignore){
-			
-			//alert('ignore div => '+tmp_id);
-			//$('#'+tmp_id).slideDown("slow");
-		
-		// if other div	
-		}else{
-			$('#'+tmp_id).slideUp("slow");			
-		}
-		console.log("search = "+$(this).attr('id'));
-	}); 	
 }
