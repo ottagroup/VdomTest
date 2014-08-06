@@ -23,6 +23,7 @@ define('VIEW', ROOT . 'view' . DS);
 define('AJAX', ROOT . 'ajax' . DS);
 define('ASSETS', ROOT . 'assets' . DS);
 define('DATA', ROOT . 'data' . DS);
+define('SESSIONS', ROOT . 'sessions' . DS);
 
 // LIB LOADER (this instead of autoloader to prevent issues with other scripts)
 /*
