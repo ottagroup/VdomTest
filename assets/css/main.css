@@ -1,0 +1,100 @@
+/* CSS/MAIN.CSS
+last update: 05-08-2014
+*/
+
+/* HEADER */
+#header{
+	background-color:#000;
+	color:#FFF;
+	overflow:hidden;
+}
+#header div{
+   padding:10px;
+}
+#header h1{
+	margin:0px;
+	margin-top:15px;
+}
+#header #left{  
+  float:left; 
+  margin-left:20px;
+}
+#header #right{
+  color:#000;
+  overflow:hidden;
+  float:right;
+  vertical-align:middle;
+}
+#header #right div{	
+	text-align:left;
+}
+
+@media screen and (max-width: 400px){
+	#name { 
+	  float: none;
+	  margin-right:0;
+	  width:auto;
+	}
+}
+
+/* MENU */
+#menu{
+	color:#FFF;		
+	padding:10px;
+	padding-left:20px;
+	background-color:#585858;
+	overflow:hidden;
+}
+#menu a{
+	color:#FFF;	text-decoration:none;
+	padding-left:10px;
+	padding-right:10px;
+}
+#menu a.active{font-weight:bold;}
+
+/* POINTS */
+#points{
+	display:inline-block;
+	margin:-5px;
+	padding:0px;
+}
+#points .loading{margin:0px; margin-bottom:-2px; padding:0px;}  
+#points .loading img{width:20px; height:20px; margin:0px; padding:0px; vertical-align:middle;}
+
+/* CONTENT */
+#content{
+	padding:20px;
+	padding-top:0px;
+	padding-bottom:10px;
+	background-color:#fff;
+	color:#000;	text-align:left;
+	overflow:hidden;
+}
+
+/* FOOTER */
+#footer{
+	padding:10px;
+	background-color:#000;
+	color:#FFF;
+	text-align:center;
+	overflow:hidden;
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* SESSION */
+#session_text{
+	padding:5px; border:solid 1px #cccccc;
+	height:100px;	
+}
+.typed-cursor{
+  opacity: 1;
+  font-weight: 100;
+  animation: blink 0.7s infinite;
+}
+@-keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
