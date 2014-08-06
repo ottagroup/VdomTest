@@ -2,65 +2,60 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>VdomTest</title>
+<title>VDomina JP Alpha 0.5</title>
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <script type="text/javascript" src="assets/js/jquery_ui.js"></script>
 <script type="text/javascript" src="assets/js/core.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/geolocation.js"></script>
+<script type="text/javascript" src="assets/js/session.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/css/jquery_ui.css">
 <link rel="stylesheet" type="text/css" href="assets/css/core.css">
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 
 <body>
-<h3>VdomTest</h3>
+<div id="header">
+    <div id="left">
+    	<h1>VDomina JP Alpha 0.5</h1>
+    </div>
+    <div id="right">
+    	<div style="background-color:#CCC">
+        	Welcome name   <br>     
+            You have<div id="points"></div>points so far     
+            <script type="text/javascript">
+                load2div('points','points');
+            </script>           
+        </div>    	
+    </div>
+</div>
+        
+<div id="menu">
+	<span id="page_menu">
+        <a href="#home">Home</a>
+        <a href="#geo">Geo</a>
+        <a href="#shdivs">Show/hide divs</a> 
+        <a href="#subload">Sub loading</a> 
+        <a href="#data">FFDB data</a> 
+        <a href="#session">Session</a> 
+        <a href="#i_dont_exist">Error</a>
+    </span>
+	<a onclick="load2div('points','points','',false); return false;" href="noscript.php">Reload points</a>
+</div>    
+ 
+<div id="content">
+    <div id="home_page"></div>
+    <div id="geo_page"></div>
+    <div id="shdivs_page"></div>
+    <div id="subload_page"></div>
+    <div id="data_page"></div>
+    <div id="session_page"></div>
+    <div id="i_dont_exist_page"></div>
+</div>
+
+<div id="footer">&nbsp;</div>
 
 
-<!--
-These links use the core.js to load pages
-#home loads ajax/home.php into id="home_page"
-#test loads ajax/test.php into id="test_page"
-
-Loading animations, visibility, errors etc are handled automaticly.
-The default loading style is: .pageloading (see core.css)
-The loading image needs to be: assets/img/loading.gif
-
-The default error style is: .errorcell (see core.css)
--->
-<a href="#home">Home</a> - <a href="#test">Test</a> 
-<div id="home_page"></div>
-<div id="test_page"></div>
-
-<br>
-<br>
-
-<!--
-GEO LOCATION
-under construction
--->
-<a onclick="geolocation();return false;" href="noscript.php">GEO Location <span id="geostatus"></span></a>
-<div id="geodata"></div>
-
-<br>
-<br>
-
-<!--
-SUB LOADER
-kind of hard to explain atm
-but data2url.. edit the url of the page... and main.js loads stuff based on that.
-The first thing in data2url acts as a group (main=points).. as in main being the group
-when there are multiple elements with the same group (as bellow) it can swiths the visibility between both 
-
-main.js is a mess atm.. but you only need to look at loadpageelem
--->
-<a id="main_points_btn" onclick="data2url('main=points'); togglepageelem('main_points'); return false;" href="noscript.php">Sub loader</a>
- - 
-<a id="main_blabla_btn" onclick="data2url('main=blabla'); togglepageelem('main_blabla'); return false;" href="noscript.php">Sub loader 2</a> 
- -
-<a id="main_datatest_btn" onclick="data2url('main=datatest'); togglepageelem('main_datatest'); return false;" href="noscript.php">DATA TEST</a>
-<div id="main_points"></div> 
-<div id="main_blabla"></div>
-<div id="main_datatest"></div>
 
 <!--
 Main dialog
@@ -73,7 +68,7 @@ title, contents and visibility get handled by the java code
 Loading image
 this is only here as a pre-load (its not used by any java code)
 -->
-<div style="display:none"><img src="assets/img/loading.gif"></div>  
+<div style="display:none"><img src="assets/img/loading.gif"></div>   
 
 </body>
 </html>
