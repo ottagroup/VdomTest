@@ -6,6 +6,8 @@ last update: 04-08-2014
 // LOAD CORE
 require_once '../core.php';
 
+sleep(2.0); // delay to show the loading process
+
 // DATA ARRAY 
 $data_array = array();
 
