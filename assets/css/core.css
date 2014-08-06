@@ -1,6 +1,5 @@
 /* CSS/CORE.CSS
-- main style, used on all pages
-last update: 23-7-2014
+last update: 05-08-2014
 */
 
 /* BODY */
@@ -9,10 +8,16 @@ body{
 	font-size:16px; font-family: Arial, Helvetica, sans-serif;
 	color:#5b5b5b;	
 	font-weight:normal;
-	background-color:#cccccc;
-	background:#b8b8b8 url(/img/bg.gif) no-repeat fixed center;
-	background-size: 100%;
+	background-color:#ffffff;
 }
+
+/* BOLD */
+.bold{
+	font-weight:bold;	
+}
+
+/* HIDE */
+.hide{display:none;}
 
 /* LOADING DIVS */
 .pageloading img{
@@ -21,6 +26,8 @@ body{
     margin-top:-30px; margin-left:-30px;
 	width:60px;	height:60px;
 }
+#content .loading{text-align:center;}  
+#content .loading img{width:40px; height:40px; margin:10px;}
 
 /* TABLE */
 .table{display:table; width:100%;}
